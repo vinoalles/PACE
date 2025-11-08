@@ -73,11 +73,11 @@ normalized to mean = 1.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2020-01-01"</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"quarter"</span>, length.out <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 Value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pace_forecast_seasonal</span><span class="op">(</span><span class="va">df</span>, periods <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Time  Forecast</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2023-01-01  87.72517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2023-04-01  96.66592</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2023-07-01 101.09158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2023-10-01  99.03541</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Time Forecast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2023-01-01 94.34326</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2023-04-01 84.47390</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2023-07-01 86.11651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2023-10-01 83.31874</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
