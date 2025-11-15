@@ -1,8 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
-^LICENSE\.md$
-^_pkgdown\.yml$
+^README\.html$
 ^docs$
 ^pkgdown$
 ^\.github$
+^\.devcontainer$
+^_pkgdown\.yml$
+^LICENSE\.md$
+^codecov\.yml$
+^doc$
+^Meta$

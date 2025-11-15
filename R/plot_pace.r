@@ -1,47 +1,55 @@
-#' Plot PACE Forecast
-#'
-#' @description
-#' Visualizes PACE forecasts against actual historical data.
-#' Displays Actual values (blue) vs Forecast values (red).
-#'
-#' @param forecast_df A data frame returned by pace_forecast or pace_forecast_seasonal
-#'                    containing columns Time and Forecast.
-#' @param actual_df (optional) A data frame with historical Time and Value columns.
-#' @return A ggplot object
-#'
+# R/plot_pace.r
+utils::globalVariables(c("Type", "Value", "Time"))
+
+#' Plot PACE Forecast vs Actuals
+#' @param forecast_df Data frame from pace_forecast()
+#' @param actual_df Original historical data (optional)
+#' @return ggplot object
+#' @export
+#' @importFrom ggplot2 ggplot aes geom_line geom_point scale_color_manual theme_minimal theme labs element_text element_blank
+#' @importFrom dplyr bind_rows mutate select
 #' @examples
 #' df <- data.frame(Time = seq(as.Date("2020-01-01"), by="quarter", length.out=12),
-#'                  Value = rnorm(12, 100, 10))
-#' result <- pace_forecast(df, periods = 4)
-#' plot_pace(result, df)
-#'
-#' @export
+#'                  Value = c(80,95,100,92,105,110,90,78,70,85,98,110))
+#' fc <- pace_forecast(df, 4)
+#' plot_pace(fc, df)
 plot_pace <- function(forecast_df, actual_df = NULL) {
-  library(ggplot2)
-
-  # prepare forecast data for plotting
-  forecast_df$Type <- "Forecast"
-  names(forecast_df)[names(forecast_df) == "Forecast"] <- "Value"
-
-  if (!is.null(actual_df)) {
-    actual_df$Type <- "Actual"
-    plot_df <- rbind(
-      actual_df[, c("Time", "Value", "Type")],
-      forecast_df[, c("Time", "Value", "Type")]
-    )
-  } else {
-    plot_df <- forecast_df
+  if (!all(c("Time", "Forecast") %in% names(forecast_df))) {
+    stop("forecast_df must contain 'Time' and 'Forecast'")
   }
 
-  ggplot(plot_df, aes(x = Time, y = Value, color = Type)) +
+  plot_data <- forecast_df %>%
+    mutate(Value = Forecast, Type = "Forecast") %>%
+    select(Time, Value, Type)
+
+  if (!is.null(actual_df)) {
+    if (!all(c("Time", "Value") %in% names(actual_df))) {
+      stop("actual_df must contain 'Time' and 'Value'")
+    }
+    actual_data <- actual_df %>%
+      mutate(Type = "Actual") %>%
+      select(Time, Value, Type)
+    plot_data <- bind_rows(actual_data, plot_data)
+  }
+
+  plot_data <- plot_data %>%
+    mutate(Type = factor(Type, levels = c("Actual", "Forecast")))
+
+  ggplot(plot_data, aes(x = Time, y = Value, color = Type)) +
     geom_line(linewidth = 1.2) +
-    geom_point(size = 2) +
-    scale_color_manual(values = c("Actual" = "blue", "Forecast" = "red")) +
+    geom_point(size = 2.5) +
+    scale_color_manual(values = c("Actual" = "#2c7bb6", "Forecast" = "#d7191c")) +
+    theme_minimal(base_size = 12) +
+    theme(
+      legend.position = "bottom",
+      legend.title = element_blank(),
+      plot.title = element_text(hjust = 0.5, face = "bold"),
+      axis.title = element_text(face = "bold")
+    ) +
     labs(
       title = "PACE Forecast",
-      x = "Time",
-      y = "Value"
-    ) +
-    theme_minimal() +
-    theme(legend.position = "bottom")
+      subtitle = if (!is.null(actual_df)) "Actual vs Forecast" else "Forecast",
+      x = "Date",
+      y = "Value"  # ← THIS QUOTE WAS MISSING!
+    )
 }

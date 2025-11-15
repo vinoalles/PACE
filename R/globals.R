@@ -1,0 +1,11 @@
+utils::globalVariables(c(
+  "Ysum",
+  "Qsum",
+  "season_mean",
+  "quart",
+  "year",
+  "Value",
+  "Time",
+  "Type",
+  "Forecast"
+))

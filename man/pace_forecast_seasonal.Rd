@@ -2,27 +2,27 @@
 % Please edit documentation in R/pace_forecast_seasonal.r
 \name{pace_forecast_seasonal}
 \alias{pace_forecast_seasonal}
-\title{PACE Forecast with Seasonality}
+\title{PACE Forecast with Seasonal Adjustment}
 \usage{
 pace_forecast_seasonal(df, periods = 12)
 }
 \arguments{
-\item{df}{A data frame with two columns: Time (Date) and Value (numeric).}
+\item{df}{A data frame with columns:
+\itemize{
+\item \code{Time}: Date (will be coerced to Date)
+\item \code{Value}: Numeric values to forecast
+}}
 
-\item{periods}{Number of future periods to forecast (default = 12).}
+\item{periods}{Number of future quarters to forecast (default: 12)}
 }
 \value{
-A data frame containing future Time and Forecast values.
+Data frame with Time and Forecast
 }
 \description{
-PACE (Predictive Adjusted Capped Estimator) with seasonal adjustment.
-Combines Year-over-Year, Quarter-over-Quarter, and Prior-Quarter growth rates,
-applies volatility caps, and multiplies by quarterly seasonality factors
-normalized to mean = 1.
+Extends PACE with quarterly seasonal normalization.
 }
 \examples{
-df <- data.frame(Time = seq(as.Date("2020-01-01"), by = "quarter", length.out = 12),
-                 Value = rnorm(12, 100, 10))
-pace_forecast_seasonal(df, periods = 4)
-
+df <- data.frame(Time = seq(as.Date("2020-01-01"), by = "quarter", length.out = 16),
+                 Value = c(80,95,110,90, 85,100,115,95, 82,97,112,92, 87,102,118,96))
+pace_forecast_seasonal(df, 4)
 }

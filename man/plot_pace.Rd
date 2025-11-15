@@ -2,27 +2,24 @@
 % Please edit documentation in R/plot_pace.r
 \name{plot_pace}
 \alias{plot_pace}
-\title{Plot PACE Forecast}
+\title{Plot PACE Forecast vs Actuals}
 \usage{
 plot_pace(forecast_df, actual_df = NULL)
 }
 \arguments{
-\item{forecast_df}{A data frame returned by pace_forecast or pace_forecast_seasonal
-containing columns Time and Forecast.}
+\item{forecast_df}{Data frame from pace_forecast()}
 
-\item{actual_df}{(optional) A data frame with historical Time and Value columns.}
+\item{actual_df}{Original historical data (optional)}
 }
 \value{
-A ggplot object
+ggplot object
 }
 \description{
-Visualizes PACE forecasts against actual historical data.
-Displays Actual values (blue) vs Forecast values (red).
+Plot PACE Forecast vs Actuals
 }
 \examples{
 df <- data.frame(Time = seq(as.Date("2020-01-01"), by="quarter", length.out=12),
-                 Value = rnorm(12, 100, 10))
-result <- pace_forecast(df, periods = 4)
-plot_pace(result, df)
-
+                 Value = c(80,95,100,92,105,110,90,78,70,85,98,110))
+fc <- pace_forecast(df, 4)
+plot_pace(fc, df)
 }
