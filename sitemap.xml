@@ -1,13 +1,14 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>https://vinoalles.github.io/PACE/404.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/LICENSE-text.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/LICENSE.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/authors.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/index.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/news/index.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/reference/index.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/reference/pace_forecast.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/reference/pace_forecast_seasonal.html</loc></url>
-<url><loc>https://vinoalles.github.io/PACE/reference/plot_pace.html</loc></url>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/PACE.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/pace_forecast.html</loc></url>
+<url><loc>/reference/pace_forecast_seasonal.html</loc></url>
+<url><loc>/reference/plot_pace.html</loc></url>
 </urlset>
 
